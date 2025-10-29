@@ -6,4 +6,21 @@ test("hit method", () => {
     ship.hit();
 
     expect(ship.hasBeenHitCount).toBe(1);
-}) 
+})
+
+test("isSunk method: ship hasn't sunk", () => {
+    const ship = new Ship(2);
+
+    ship.hit();
+
+    expect(ship.isSunk()).toBe(false);
+})
+
+test("isSunk method: ship has sunk", () => {
+    const ship = new Ship(2);
+
+    ship.hit();
+    ship.hit();
+
+    expect(ship.isSunk()).toBe(true);
+})
