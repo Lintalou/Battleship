@@ -4,6 +4,10 @@ class Ship {
         this.hasBeenHitCount = 0;
         this.hasSunk = false;
     }
+
+    hit() {
+        this.hasBeenHitCount += 1;
+    }
 }
 
 export { Ship }
