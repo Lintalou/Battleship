@@ -1,7 +1,7 @@
 class Ship {
-    constructor(length, hasBeenHitCount) {
+    constructor(length) {
         this.length = length;
-        this.hasBeenHitCount = hasBeenHitCount;
+        this.hasBeenHitCount = 0;
         this.hasSunk = false;
     }
 }
