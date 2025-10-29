@@ -5,3 +5,5 @@ class Ship {
         this.hasSunk = false;
     }
 }
+
+export { Ship }
