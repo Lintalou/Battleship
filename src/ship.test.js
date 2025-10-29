@@ -12,8 +12,9 @@ test("isSunk method: ship hasn't sunk", () => {
     const ship = new Ship(2);
 
     ship.hit();
+    ship.isSunk();
 
-    expect(ship.isSunk()).toBe(false);
+    expect(ship.hasSunk).toBe(false);
 })
 
 test("isSunk method: ship has sunk", () => {
@@ -21,6 +22,7 @@ test("isSunk method: ship has sunk", () => {
 
     ship.hit();
     ship.hit();
+    ship.isSunk()
 
-    expect(ship.isSunk()).toBe(true);
+    expect(ship.hasSunk).toBe(true);
 })
