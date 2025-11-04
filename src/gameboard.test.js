@@ -1,7 +1,19 @@
 import { GameBoard } from "./gameboard";
 import { Ship } from "./ship";
 
-test("place ships at coordinates, GameBoard", () => {
+test("making the game's board", () => {
+    const gameBoard = new GameBoard();
+
+    const squareCount = 0;
+
+    gameBoard.board.forEach((row) => {
+        squareCount += row.length;
+    })
+
+    expect(squareCount).toBe(100);
+})
+
+test("place ships at coordinates", () => {
     const gameBoard = new GameBoard();
     const patrolBoat = new Ship(2);
     const submarine = new Ship(3);
