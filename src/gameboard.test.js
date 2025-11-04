@@ -4,11 +4,11 @@ import { Ship } from "./ship";
 test("making the game's board", () => {
     const gameBoard = new GameBoard();
 
-    const squareCount = 0;
+    let squareCount = 0;
 
-    gameBoard.board.forEach((row) => {
-        squareCount += row.length;
-    })
+    for (let i = 0; i < gameBoard.board.length; i++) {
+        squareCount += gameBoard.board[i].length;
+    }
 
     expect(squareCount).toBe(100);
 })
