@@ -50,3 +50,36 @@ test("ship hasn't received attack", () => {
 
     expect(gameBoard.missedAttacks[0]).toEqual([6, "A"]);
 })
+
+test("all ships have been sunk", () => {
+    const gameBoard = new GameBoard();
+    const patrolBoat = new Ship(2);
+    const patrolBoat2 = new Ship(2);
+
+    gameBoard.place(patrolBoat, [3, "J"], "vertical");
+    gameBoard.place(patrolBoat2, [1, "D"], "vertical");
+
+    gameBoard.receiveAttack([3, "J"]);
+    gameBoard.receiveAttack([4, "J"]);
+
+    gameBoard.receiveAttack([1, "D"]);
+    gameBoard.receiveAttack([2, "D"]);
+
+    expect(gameBoard.allSunk()).toBe(true);
+})
+
+test("all ships haven't been sunk", () => {
+    const gameBoard = new GameBoard();
+    const patrolBoat = new Ship(2);
+    const patrolBoat2 = new Ship(2);
+
+    gameBoard.place(patrolBoat, [3, "J"], "vertical");
+    gameBoard.place(patrolBoat2, [1, "D"], "vertical");
+
+    gameBoard.receiveAttack([3, "J"]);
+
+    gameBoard.receiveAttack([1, "D"]);
+    gameBoard.receiveAttack([2, "D"]);
+
+    expect(gameBoard.allSunk()).toBe(false);
+})
