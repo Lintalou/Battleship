@@ -35,6 +35,16 @@ class GameBoard {
             }
         }
     }
+
+    receiveAttack(coord) {
+        const coordNum = [coord[0] - 1, changeLetterToNum(coord[1])];
+
+        if (this.board[coordNum[0]][coordNum[1]] !== undefined) {
+            this.board[coordNum[0]][coordNum[1]].hit();
+        } else {
+            this.missedAttacks.push(coord);
+        }
+    }
 }
 
 export { GameBoard }
