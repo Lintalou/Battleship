@@ -28,3 +28,14 @@ test("place ships at coordinates", () => {
     expect(gameBoard.board[1][3]).toBe(submarine);
     expect(gameBoard.board[2][3]).toBe(submarine);
 })
+
+test("ship received attack", () => {
+    const gameBoard = new GameBoard();
+    const patrolBoat = new Ship(2);
+
+    gameBoard.place(patrolBoat, [3, "J"], "vertical");
+
+    gameBoard.receiveAttack([3, "J"]);
+
+    expect(patrolBoat.hasBeenHitCount).toBe(1);
+})
