@@ -18,10 +18,13 @@ class GameBoard {
     constructor() {
         this.board = createEmptyBoard();
         this.missedAttacks = [];
+        this.ships = [];
     }
 
     place(ship, coord, orientation) {
         const coordNum = [coord[0] - 1, changeLetterToNum(coord[1])];
+
+        this.ships.push(ship);
 
         if (orientation.toLowerCase() === "horizontal") {
             for (let i = 0; i < ship.length; i++) {
@@ -43,6 +46,22 @@ class GameBoard {
             this.board[coordNum[0]][coordNum[1]].hit();
         } else {
             this.missedAttacks.push(coord);
+        }
+    }
+
+    allSunk() {
+        const booleanArr = [];
+
+        this.ships.forEach((ship) => {
+            ship.isSunk();
+
+            booleanArr.push(ship.hasSunk);
+        })
+
+        if (booleanArr.includes(false)) {
+            return false;
+        } else {
+            return true;
         }
     }
 }
