@@ -39,3 +39,14 @@ test("ship received attack", () => {
 
     expect(patrolBoat.hasBeenHitCount).toBe(1);
 })
+
+test("ship hasn't received attack", () => {
+    const gameBoard = new GameBoard();
+    const patrolBoat = new Ship(2);
+
+    gameBoard.place(patrolBoat, [3, "J"], "vertical");
+
+    gameBoard.receiveAttack([6, "A"]);
+
+    expect(gameBoard.missedAttacks[0]).toEqual([6, "A"]);
+})
