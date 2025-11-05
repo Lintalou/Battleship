@@ -17,6 +17,7 @@ function changeLetterToNum(letter) {
 class GameBoard {
     constructor() {
         this.board = createEmptyBoard();
+        this.missedAttacks = [];
     }
 
     place(ship, coord, orientation) {
