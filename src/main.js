@@ -1,4 +1,12 @@
 import { Ship } from "./ship.js";
 import { Player } from "./player.js";
 
-const player = new Player("player");
+function generatePlayer(name) {
+    return new Player(name);
+}
+
+function generateShip(size) {
+    return new Ship(size);
+}
+
+export { generatePlayer, generateShip }
