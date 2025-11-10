@@ -6,15 +6,16 @@ const shootingBoard = document.getElementById("shootingBoard");
 
 function displayPrimaryBoard() {
     players[0].gameBoard.board.forEach((row) => {
-        row.forEach((square) => {
+        for (let i = 0; i < row.length; i++) {
             const squareDisplay = document.createElement("div");
 
+            const square = row[i];
             if (square) {
                 squareDisplay.className = "ship";
             }
 
             primaryBoard.appendChild(squareDisplay);
-        })
+        }
     })
 }
 
