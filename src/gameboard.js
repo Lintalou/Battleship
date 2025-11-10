@@ -2,7 +2,7 @@ function createEmptyBoard() {
     const board = new Array(10);
 
     for (let i = 0; i < board.length; i++) {
-        board[i] = new Array(10);
+        board[i] = new Array(10).fill("");
     }
 
     return board;
@@ -42,7 +42,7 @@ class GameBoard {
     receiveAttack(coord) {
         const coordNum = [coord[0] - 1, changeLetterToNum(coord[1])];
 
-        if (this.board[coordNum[0]][coordNum[1]] !== undefined) {
+        if (this.board[coordNum[0]][coordNum[1]]) {
             this.board[coordNum[0]][coordNum[1]].hit();
         } else {
             this.missedAttacks.push(coord);
