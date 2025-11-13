@@ -4,7 +4,9 @@ const startButton = document.getElementById("start");
 const primaryBoard = document.getElementById("primaryBoard");
 const shootingBoard = document.getElementById("shootingBoard");
 
-function displayPrimaryBoard(currentPlayer) {
+function displayPrimaryBoard() {
+    const currentPlayer = getCurrentPlayer();
+
     currentPlayer.gameBoard.board.forEach((row) => {
         for (let i = 0; i < row.length; i++) {
             const squareDisplay = document.createElement("div");
@@ -30,7 +32,7 @@ function start() {
     currentPlayer.gameBoard.place(patrolBoat, [6, "F"], "vertical");
     currentPlayer.gameBoard.place(carrier, [10, "A"], "horizontal");
 
-    displayPrimaryBoard(currentPlayer);
+    displayPrimaryBoard();
 }
 
 startButton.addEventListener("click", start);
