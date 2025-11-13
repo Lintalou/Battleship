@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #a3d5e5;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+#start {
+    padding: 10px;
+    width: 100px;
+    font-size: 18px;
+}
+
+#primaryBoard div,
+#shootingBoard div {
+    height: 16px;
+    width: 16px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+#primaryBoard,
+#shootingBoard {
+    display: grid;
+    grid-template-columns: repeat(10, 16px);
+}
