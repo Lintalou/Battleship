@@ -39,3 +39,7 @@ body {
     justify-content: center;
     margin-top: 50px;
 }
+
+#boardContainer #primaryBoard .ship {
+    background-color: silver;
+}
