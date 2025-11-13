@@ -1,4 +1,4 @@
-import { generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer } from "./main.js";
+import { generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer } from "../game/main.js";
 
 const startButton = document.getElementById("start");
 const primaryBoard = document.getElementById("primaryBoard");
