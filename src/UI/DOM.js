@@ -21,6 +21,16 @@ function displayPrimaryBoard() {
     })
 }
 
+function displayShootingBoard() {
+    for (let i = 0; i < 100; i++) {
+        const squareDisplay = document.createElement("div");
+
+        squareDisplay.className = i;
+
+        shootingBoard.appendChild(squareDisplay);
+    }
+}
+
 function start() {
     generatePlayers();
 
@@ -33,6 +43,7 @@ function start() {
     currentPlayer.gameBoard.place(carrier, [10, "A"], "horizontal");
 
     displayPrimaryBoard();
+    displayShootingBoard();
 }
 
 startButton.addEventListener("click", start);
