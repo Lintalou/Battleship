@@ -1,11 +1,11 @@
-import { generatePlayer, generateShip, players } from "./main.js";
+import { generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer } from "./main.js";
 
 const startButton = document.getElementById("start");
 const primaryBoard = document.getElementById("primaryBoard");
 const shootingBoard = document.getElementById("shootingBoard");
 
-function displayPrimaryBoard() {
-    players[0].gameBoard.board.forEach((row) => {
+function displayPrimaryBoard(currentPlayer) {
+    currentPlayer.gameBoard.board.forEach((row) => {
         for (let i = 0; i < row.length; i++) {
             const squareDisplay = document.createElement("div");
 
@@ -20,16 +20,17 @@ function displayPrimaryBoard() {
 }
 
 function start() {
-    generatePlayer("player");
-    generatePlayer("computer");
+    generatePlayers();
+
+    const currentPlayer = getCurrentPlayer();
 
     const patrolBoat = generateShip(2);
     const carrier = generateShip(5);
 
-    players[0].gameBoard.place(patrolBoat, [6, "F"], "vertical");
-    players[0].gameBoard.place(carrier, [10, "A"], "horizontal");
+    currentPlayer.gameBoard.place(patrolBoat, [6, "F"], "vertical");
+    currentPlayer.gameBoard.place(carrier, [10, "A"], "horizontal");
 
-    displayPrimaryBoard();
+    displayPrimaryBoard(currentPlayer);
 }
 
 startButton.addEventListener("click", start);
