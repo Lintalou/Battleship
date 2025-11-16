@@ -28,4 +28,25 @@ function getComputerPlayer() {
     }
 }
 
-export { generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer }
+function translateCoord(coord) {
+    if (typeof coord === number) {
+        const arrOfLetter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+        const newCoord = [];
+
+        if (coord < 10) {
+            newCoord[0] = 1;
+            newCoord[1] = arrOfLetter[coord];
+
+            return newCoord;
+        } else {
+            const numberSplit = coord.split("");
+
+            newCoord[0] = numberSplit[0] + 1;
+            newCoord[1] = arrOfLetter[numberSplit[1]];
+
+            return newCoord;
+        }
+    }
+}
+
+export { generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer, translateCoord }
