@@ -2,6 +2,7 @@ import { Ship } from "./ship.js";
 import { Player } from "./player.js";
 
 const players = [];
+let currentTurn = players[0];
 
 function generatePlayers() {
     players[0] = new Player("player");
@@ -49,4 +50,15 @@ function translateCoord(coord) {
     }
 }
 
-export { generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer, translateCoord }
+function switchTurn() {
+    if (turn === players[0]) {
+        turn = players[1];
+    } else {
+        turn = players[0];
+    }
+}
+
+export {
+    generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer,
+    translateCoord, currentTurn, switchTurn
+}
