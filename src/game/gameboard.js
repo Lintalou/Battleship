@@ -11,7 +11,7 @@ function createEmptyBoard() {
 function changeLetterToNum(letter) {
     const arrOfLetter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
 
-    return arrOfLetter.indexOf(letter.toUpperCase());
+    return arrOfLetter.indexOf(String(letter).toUpperCase());
 }
 
 class GameBoard {
