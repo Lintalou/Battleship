@@ -43,3 +43,7 @@ body {
 #boardContainer #primaryBoard .ship {
     background-color: silver;
 }
+
+#shootingBoard div.hit {
+    background-color: #ec8181;
+}
