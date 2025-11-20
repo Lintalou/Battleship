@@ -1,4 +1,7 @@
-import { generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer } from "../game/main.js";
+import {
+    generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer,
+    translateCoord
+} from "../game/main.js";
 
 const startButton = document.getElementById("start");
 const primaryBoard = document.getElementById("primaryBoard");
@@ -25,7 +28,7 @@ function displayShootingBoard() {
     for (let i = 0; i < 100; i++) {
         const squareDisplay = document.createElement("div");
 
-        squareDisplay.className = i;
+        squareDisplay.dataset.index = i;
 
         shootingBoard.appendChild(squareDisplay);
     }
@@ -47,3 +50,18 @@ function start() {
 }
 
 startButton.addEventListener("click", start);
+
+function playerShoot(event) {
+    const target = event.target;
+
+    if (!target.hasChildNodes()) {
+        const computer = getComputerPlayer();
+        const targetCoord = translateCoord(Number(target.dataset.index));
+
+        computer.gameBoard.receiveAttack(targetCoord);
+
+        target.classList.add("hit");
+    }
+}
+
+shootingBoard.addEventListener("click", playerShoot);
