@@ -29,7 +29,7 @@ function getComputerPlayer() {
 }
 
 function translateCoord(coord) {
-    if (typeof coord === number) {
+    if (typeof coord === "number") {
         const arrOfLetter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
         const newCoord = [];
 
@@ -39,10 +39,10 @@ function translateCoord(coord) {
 
             return newCoord;
         } else {
-            const numberSplit = coord.split("");
+            const numberSplit = String(coord).split("");
 
-            newCoord[0] = numberSplit[0] + 1;
-            newCoord[1] = arrOfLetter[numberSplit[1]];
+            newCoord[0] = Number(numberSplit[0]) + 1;
+            newCoord[1] = arrOfLetter[Number(numberSplit[1])];
 
             return newCoord;
         }
