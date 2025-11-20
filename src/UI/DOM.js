@@ -1,6 +1,6 @@
 import {
     generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer,
-    translateCoord
+    translateCoord, currentTurn, setCurrentTurn
 } from "../game/main.js";
 
 const startButton = document.getElementById("start");
@@ -39,6 +39,8 @@ function start() {
 
     const currentPlayer = getCurrentPlayer();
 
+    setCurrentTurn(currentPlayer);
+
     const patrolBoat = generateShip(2);
     const carrier = generateShip(5);
 
@@ -54,13 +56,17 @@ startButton.addEventListener("click", start);
 function playerShoot(event) {
     const target = event.target;
 
-    if (!target.hasChildNodes()) {
-        const computer = getComputerPlayer();
-        const targetCoord = translateCoord(Number(target.dataset.index));
+    if (!target.hasChildNodes() && target.className !== "hit") {
+        const currentPlayer = getCurrentPlayer();
 
-        computer.gameBoard.receiveAttack(targetCoord);
+        if (currentTurn === currentPlayer.name) {
+            const computer = getComputerPlayer();
+            const targetCoord = translateCoord(Number(target.dataset.index));
 
-        target.classList.add("hit");
+            computer.gameBoard.receiveAttack(targetCoord);
+
+            target.classList.add("hit");
+        }
     }
 }
 
