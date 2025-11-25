@@ -44,6 +44,7 @@ body {
     background-color: silver;
 }
 
-#shootingBoard div.hit {
+#shootingBoard div.hit,
+#primaryBoard div.hit {
     background-color: #ec8181;
 }
