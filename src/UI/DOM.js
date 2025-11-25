@@ -66,8 +66,49 @@ function playerShoot(event) {
             computer.gameBoard.receiveAttack(targetCoord);
 
             target.classList.add("hit");
+
+            setCurrentTurn(computer);
+
+            computerAction();
         }
     }
 }
 
 shootingBoard.addEventListener("click", playerShoot);
+
+function delayFor5Seconds() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("...");
+        }, 5000)
+    })
+}
+
+function generateIndex() {
+    const index = Math.floor(Math.random() * 100);
+
+    return index;
+}
+
+function computerShoot() {
+    const computer = getComputerPlayer();
+
+    if (currentTurn === computer.name) {
+        const currentPlayer = getCurrentPlayer();
+        const index = generateIndex();
+        const targetCoord = translateCoord(index);
+        const primaryBoardSquares = document.querySelectorAll("#primaryBoard div");
+
+        currentPlayer.gameBoard.receiveAttack(targetCoord);
+
+        primaryBoardSquares[index].classList.add("hit");
+
+        setCurrentTurn(currentPlayer);
+    }
+}
+
+primaryBoard.addEventListener("click", computerShoot);
+
+function computerAction() {
+    primaryBoard.click();
+}
