@@ -76,14 +76,6 @@ function playerShoot(event) {
 
 shootingBoard.addEventListener("click", playerShoot);
 
-function delayFor5Seconds() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve("...");
-        }, 5000)
-    })
-}
-
 function generateIndex() {
     const index = Math.floor(Math.random() * 100);
 
@@ -110,5 +102,9 @@ function computerShoot() {
 primaryBoard.addEventListener("click", computerShoot);
 
 function computerAction() {
-    primaryBoard.click();
+    const randomDelayInMilisec = Math.floor(Math.random() * 1000) + 1000;
+
+    setTimeout(() => {
+        primaryBoard.click();
+    }, randomDelayInMilisec)
 }
