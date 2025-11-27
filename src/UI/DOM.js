@@ -56,7 +56,7 @@ startButton.addEventListener("click", start);
 function playerShoot(event) {
     const target = event.target;
 
-    if (!target.hasChildNodes() && target.className !== "hit") {
+    if (!target.hasChildNodes() && target.dataset.state !== "hit") {
         const currentPlayer = getCurrentPlayer();
 
         if (currentTurn === currentPlayer.name) {
