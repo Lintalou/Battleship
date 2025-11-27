@@ -65,7 +65,7 @@ function playerShoot(event) {
 
             computer.gameBoard.receiveAttack(targetCoord);
 
-            target.classList.add("hit");
+            target.dataset.state = "hit";
 
             setCurrentTurn(computer);
 
@@ -93,7 +93,7 @@ function computerShoot() {
 
         currentPlayer.gameBoard.receiveAttack(targetCoord);
 
-        primaryBoardSquares[index].classList.add("hit");
+        primaryBoardSquares[index].dataset.state = "hit";
 
         setCurrentTurn(currentPlayer);
     }

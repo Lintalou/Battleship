@@ -44,7 +44,7 @@ body {
     background-color: silver;
 }
 
-#shootingBoard div.hit,
-#primaryBoard div.hit {
+#shootingBoard div[data-state="hit"],
+#boardContainer #primaryBoard div[data-state="hit"] {
     background-color: #ec8181;
 }
