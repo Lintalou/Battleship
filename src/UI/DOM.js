@@ -38,6 +38,7 @@ function start() {
     generatePlayers();
 
     const currentPlayer = getCurrentPlayer();
+    const computer = getComputerPlayer();
 
     setCurrentTurn(currentPlayer);
 
@@ -47,11 +48,36 @@ function start() {
     currentPlayer.gameBoard.place(patrolBoat, [6, "F"], "vertical");
     currentPlayer.gameBoard.place(carrier, [10, "A"], "horizontal");
 
+    const patrolBoatComp = generateShip(2);
+    const submarine = generateShip(3);
+
+    computer.gameBoard.place(patrolBoatComp, [1, "A"], "horizontal");
+    computer.gameBoard.place(submarine, [1, "D"], "vertical");
+
     displayPrimaryBoard();
     displayShootingBoard();
 }
 
 startButton.addEventListener("click", start);
+
+function endTurn() {
+    const currentPlayer = getCurrentPlayer();
+    const computer = getComputerPlayer();
+
+    if (currentPlayer.gameBoard.allSunk() === true) {
+        shootingBoard.removeEventListener("click", playerShoot);
+        primaryBoard.removeEventListener("click", computerShoot);
+
+        alert("Computer won");
+    }
+
+    if (computer.gameBoard.allSunk() === true) {
+        shootingBoard.removeEventListener("click", playerShoot);
+        primaryBoard.removeEventListener("click", computerShoot);
+
+        alert("Player won");
+    }
+}
 
 function playerShoot(event) {
     const target = event.target;
@@ -66,6 +92,8 @@ function playerShoot(event) {
             computer.gameBoard.receiveAttack(targetCoord);
 
             target.dataset.state = "hit";
+
+            endTurn();
 
             setCurrentTurn(computer);
 
@@ -98,6 +126,8 @@ function computerShoot() {
         currentPlayer.gameBoard.receiveAttack(targetCoord);
 
         primaryBoardSquares[index].dataset.state = "hit";
+
+        endTurn();
 
         setCurrentTurn(currentPlayer);
     }
