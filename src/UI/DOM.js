@@ -91,6 +91,10 @@ function computerShoot() {
         const targetCoord = translateCoord(index);
         const primaryBoardSquares = document.querySelectorAll("#primaryBoard div");
 
+        if (primaryBoardSquares[index].dataset.state === "hit") {
+            computerShoot();
+        }
+
         currentPlayer.gameBoard.receiveAttack(targetCoord);
 
         primaryBoardSquares[index].dataset.state = "hit";
