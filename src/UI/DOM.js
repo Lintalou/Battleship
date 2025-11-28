@@ -121,6 +121,7 @@ function computerShoot() {
 
         if (primaryBoardSquares[index].dataset.state === "hit") {
             computerShoot();
+            return;
         }
 
         currentPlayer.gameBoard.receiveAttack(targetCoord);
