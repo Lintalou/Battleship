@@ -1,3 +1,5 @@
+import { generateShip, translateCoord } from "./main.js";
+
 function createEmptyBoard() {
     const board = new Array(10);
 
@@ -62,6 +64,26 @@ class GameBoard {
             return false;
         } else {
             return true;
+        }
+    }
+
+    populate() {
+        while (this.ships.length !== 6) {
+            const randomIndex = Math.floor(Math.random() * 100);
+            const coord = translateCoord(randomIndex);
+
+            const randomSize = Math.floor(Math.random() * 3) + 2;
+            const ship = generateShip(randomSize);
+
+            const orientationNum = Math.floor(Math.random() * 2);
+
+            if (orientationNum === 0) {
+                this.place(ship, coord, "horizontal");
+            }
+
+            if (orientationNum === 1) {
+                this.place(ship, coord, "vertical");
+            }
         }
     }
 }
