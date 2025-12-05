@@ -1,54 +1,57 @@
 function checkHorizontal(board, ship, coord) {
+    const x = coord[1];
+    const y = coord[0];
+
     for (let i = 0; i < ship.length; i++) {
-        if (coord[1] + i > 9) {
+        if (x + i > 9) {
             return false;
         }
 
-        if (board[coord[0]][coord[1] + i]) {
+        if (board[y][x + i]) {
             return false;
         }
 
         if (i === 0) {
-            if (board[coord[0]][coord[1] - 1]) {
+            if (board[y][x - 1]) {
                 return false;
             }
 
-            if (coord[0] - 1 >= 0) {
-                if (board[coord[0] - 1][coord[1]]) {
+            if (y - 1 >= 0) {
+                if (board[y - 1][x]) {
                     return false;
                 }
             }
 
-            if (coord[0] + 1 < 10) {
-                if (board[coord[0] + 1][coord[1]]) {
+            if (y + 1 < 10) {
+                if (board[y + 1][x]) {
                     return false;
                 }
             }
         } else if (i === ship.length - 1) {
-            if (board[coord[0]][(coord[1] + i) + 1]) {
+            if (board[y][(x + i) + 1]) {
                 return false;
             }
 
-            if (coord[0] - 1 >= 0) {
-                if (board[coord[0] - 1][coord[1] + i]) {
+            if (y - 1 >= 0) {
+                if (board[y - 1][x + i]) {
                     return false;
                 }
             }
 
-            if (coord[0] + 1 < 10) {
-                if (board[coord[0] + 1][coord[1] + i]) {
+            if (y + 1 < 10) {
+                if (board[y + 1][x + i]) {
                     return false;
                 }
             }
         } else {
-            if (coord[0] - 1 >= 0) {
-                if (board[coord[0] - 1][coord[1] + i]) {
+            if (y - 1 >= 0) {
+                if (board[y - 1][x + i]) {
                     return false;
                 }
             }
 
-            if (coord[0] + 1 < 10) {
-                if (board[coord[0] + 1][coord[1] + i]) {
+            if (y + 1 < 10) {
+                if (board[y + 1][x + i]) {
                     return false;
                 }
             }
@@ -59,60 +62,63 @@ function checkHorizontal(board, ship, coord) {
 }
 
 function checkVertical(board, ship, coord) {
+    const x = coord[1];
+    const y = coord[0];
+
     for (let i = 0; i < ship.length; i++) {
-        if (coord[0] + i > 9) {
+        if (y + i > 9) {
             return false;
         }
 
-        if (board[coord[0] + i][coord[1]]) {
+        if (board[y + i][x]) {
             return false;
         }
 
         if (i === 0) {
-            if (coord[0] - 1 >= 0) {
-                if (board[coord[0] - 1][coord[1]]) {
+            if (y - 1 >= 0) {
+                if (board[y - 1][x]) {
                     return false;
                 }
             }
 
-            if (coord[1] - 1 >= 0) {
-                if (board[coord[0]][coord[1] - 1]) {
+            if (x - 1 >= 0) {
+                if (board[y][x - 1]) {
                     return false;
                 }
             }
 
-            if (coord[1] + 1 < 10) {
-                if (board[coord[0]][coord[1] + 1]) {
+            if (x + 1 < 10) {
+                if (board[y][x + 1]) {
                     return false;
                 }
             }
         } else if (i === ship.length - 1) {
-            if ((coord[0] + i) + 1 < 10) {
-                if (board[(coord[0] + i) + 1][coord[1]]) {
+            if ((y + i) + 1 < 10) {
+                if (board[(y + i) + 1][x]) {
                     return false;
                 }
             }
 
-            if (coord[1] - 1 >= 0) {
-                if (board[coord[0] + i][coord[1] - 1]) {
+            if (x - 1 >= 0) {
+                if (board[y + i][x - 1]) {
                     return false;
                 }
             }
 
-            if (coord[0] + 1 < 10) {
-                if (board[coord[0] + i][coord[1] + 1]) {
+            if (y + 1 < 10) {
+                if (board[y + i][x + 1]) {
                     return false;
                 }
             }
         } else {
-            if (coord[1] - 1 >= 0) {
-                if (board[coord[0] + i][coord[1] - 1]) {
+            if (x - 1 >= 0) {
+                if (board[y + i][x - 1]) {
                     return false;
                 }
             }
 
-            if (coord[0] + 1 < 10) {
-                if (board[coord[0] + i][coord[1] + 1]) {
+            if (y + 1 < 10) {
+                if (board[y + i][x + 1]) {
                     return false;
                 }
             }
