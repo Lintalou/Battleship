@@ -9,41 +9,54 @@ function checkHorizontal(board, ship, coord) {
         }
 
         if (i === 0) {
+            console.log([coord[0], coord[1]]);
             if (board[coord[0]][coord[1] - 1]) {
                 return false;
             }
 
-            if (board[coord[0] - 1][coord[1]]) {
-                return false;
+            if (coord[0] - 1 >= 0) {
+                if (board[coord[0] - 1][coord[1]]) {
+                    return false;
+                }
             }
 
-            if (board[coord[0] + 1][coord[1]]) {
-                return false;
+            if (coord[0] + 1 < 10) {
+                if (board[coord[0] + 1][coord[1]]) {
+                    return false;
+                }
             }
         } else if (i === ship.length - 1) {
             if (board[coord[0]][(coord[1] + i) + 1]) {
                 return false;
             }
 
-            if (board[coord[0] - 1][coord[1] + i]) {
-                return false;
+            if (coord[0] - 1 >= 0) {
+                if (board[coord[0] - 1][coord[1] + i]) {
+                    return false;
+                }
             }
 
-            if (board[coord[0] + 1][coord[1] + i]) {
-                return false;
+            if (coord[0] + 1 < 10) {
+                if (board[coord[0] + 1][coord[1] + i]) {
+                    return false;
+                }
             }
         } else {
-            if (board[coord[0] - 1][coord[1] + i]) {
-                return false;
+            if (coord[0] - 1 >= 0) {
+                if (board[coord[0] - 1][coord[1] + i]) {
+                    return false;
+                }
             }
 
-            if (board[coord[0] + 1][coord[1] + i]) {
-                return false;
+            if (coord[0] + 1 < 10) {
+                if (board[coord[0] + 1][coord[1] + i]) {
+                    return false;
+                }
             }
         }
-
-        return true;
     }
+
+    return true;
 }
 
 function checkVertical(board, ship, coord) {
