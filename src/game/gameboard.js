@@ -72,7 +72,7 @@ class GameBoard {
             const randomIndex = Math.floor(Math.random() * 100);
             const coord = translateCoord(randomIndex);
 
-            const randomSize = Math.floor(Math.random() * 3) + 2;
+            const randomSize = Math.floor(Math.random() * 4) + 2;
             const ship = generateShip(randomSize);
 
             const orientationNum = Math.floor(Math.random() * 2);
