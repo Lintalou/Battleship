@@ -58,3 +58,5 @@ function checkVertical(board, ship, coord) {
     }
 
 }
+
+export { checkHorizontal, checkVertical }

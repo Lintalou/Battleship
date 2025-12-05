@@ -1,4 +1,5 @@
 import { generateShip, translateCoord } from "./main.js";
+import { checkHorizontal, checkVertical } from "./checkPlacement.js";
 
 function createEmptyBoard() {
     const board = new Array(10);
