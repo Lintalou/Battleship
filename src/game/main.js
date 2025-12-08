@@ -2,6 +2,7 @@ import { Ship } from "./ship.js";
 import { Player } from "./player.js";
 
 const players = [];
+
 let currentTurn;
 
 function generatePlayers() {
