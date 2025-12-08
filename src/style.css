@@ -48,3 +48,8 @@ body {
 #boardContainer #primaryBoard div[data-state="hit"] {
     background-color: #ec8181;
 }
+
+#shootingBoard div[data-state="hitShip"],
+#boardContainer #primaryBoard div[data-state="hitShip"] {
+    background-color: #048e8e;
+}
