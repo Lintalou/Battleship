@@ -72,17 +72,25 @@ class GameBoard {
         while (this.ships.length !== 6) {
             const randomIndex = Math.floor(Math.random() * 100);
             const coord = translateCoord(randomIndex);
+            const coordNum = [coord[0] - 1, changeLetterToNum(coord[1])];
 
             const randomSize = Math.floor(Math.random() * 4) + 2;
             const ship = generateShip(randomSize);
 
-            const orientationNum = Math.floor(Math.random() * 2);
+            const horizontalCheck = checkHorizontal(this.board, ship, coordNum);
+            const verticalCheck = checkVertical(this.board, ship, coordNum);
 
-            if (orientationNum === 0) {
+            if (horizontalCheck && verticalCheck) {
+                const orientationNum = Math.floor(Math.random() * 2);
+
+                if (orientationNum === 0) {
+                    this.place(ship, coord, "horizontal");
+                } else {
+                    this.place(ship, coord, "vertical");
+                }
+            } else if (horizontalCheck) {
                 this.place(ship, coord, "horizontal");
-            }
-
-            if (orientationNum === 1) {
+            } else if (verticalCheck) {
                 this.place(ship, coord, "vertical");
             }
         }
