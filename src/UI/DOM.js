@@ -1,6 +1,6 @@
 import {
     generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer,
-    translateCoord, currentTurn, setCurrentTurn
+    translateCoord, currentTurn, setCurrentTurn, changeLetterToNum
 } from "../game/main.js";
 
 const startButton = document.getElementById("start");
@@ -42,17 +42,8 @@ function start() {
 
     setCurrentTurn(currentPlayer);
 
-    const patrolBoat = generateShip(2);
-    const carrier = generateShip(5);
-
-    currentPlayer.gameBoard.place(patrolBoat, [6, "F"], "vertical");
-    currentPlayer.gameBoard.place(carrier, [10, "A"], "horizontal");
-
-    const patrolBoatComp = generateShip(2);
-    const submarine = generateShip(3);
-
-    computer.gameBoard.place(patrolBoatComp, [1, "A"], "horizontal");
-    computer.gameBoard.place(submarine, [1, "D"], "vertical");
+    currentPlayer.gameBoard.populate();
+    computer.gameBoard.populate();
 
     displayPrimaryBoard();
     displayShootingBoard();
@@ -88,10 +79,19 @@ function playerShoot(event) {
         if (currentTurn === currentPlayer.name) {
             const computer = getComputerPlayer();
             const targetCoord = translateCoord(Number(target.dataset.index));
+            const coordNum = [targetCoord[0] - 1, changeLetterToNum(targetCoord[1])];
+
+            if (computer.gameBoard.board[coordNum[0]][coordNum[1]]) {
+                target.className = "ship";
+            }
 
             computer.gameBoard.receiveAttack(targetCoord);
 
-            target.dataset.state = "hit";
+            if (target.className === "ship") {
+                target.dataset.state = "hitShip";
+            } else {
+                target.dataset.state = "hit";
+            }
 
             endTurn();
 
@@ -119,14 +119,18 @@ function computerShoot() {
         const targetCoord = translateCoord(index);
         const primaryBoardSquares = document.querySelectorAll("#primaryBoard div");
 
-        if (primaryBoardSquares[index].dataset.state === "hit") {
+        if (primaryBoardSquares[index].dataset.state) {
             computerShoot();
             return;
         }
 
         currentPlayer.gameBoard.receiveAttack(targetCoord);
 
-        primaryBoardSquares[index].dataset.state = "hit";
+        if (primaryBoardSquares[index].className === "ship") {
+            primaryBoardSquares[index].dataset.state = "hitShip";
+        } else {
+            primaryBoardSquares[index].dataset.state = "hit";
+        }
 
         endTurn();
 
