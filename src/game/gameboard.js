@@ -1,4 +1,4 @@
-import { generateShip, translateCoord } from "./main.js";
+import { generateShip, translateCoord, changeLetterToNum } from "./main.js";
 import { checkHorizontal, checkVertical } from "./checkPlacement.js";
 
 function createEmptyBoard() {
@@ -9,12 +9,6 @@ function createEmptyBoard() {
     }
 
     return board;
-}
-
-function changeLetterToNum(letter) {
-    const arrOfLetter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-
-    return arrOfLetter.indexOf(String(letter).toUpperCase());
 }
 
 class GameBoard {

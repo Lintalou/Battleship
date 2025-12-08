@@ -54,7 +54,13 @@ function setCurrentTurn(player) {
     currentTurn = player.name;
 }
 
+function changeLetterToNum(letter) {
+    const arrOfLetter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+
+    return arrOfLetter.indexOf(String(letter).toUpperCase());
+}
+
 export {
     generatePlayers, generateShip, getCurrentPlayer, getComputerPlayer,
-    translateCoord, currentTurn, setCurrentTurn
+    translateCoord, currentTurn, setCurrentTurn, changeLetterToNum
 }
