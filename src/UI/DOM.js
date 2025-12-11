@@ -104,10 +104,19 @@ function playerShoot(event) {
 
 shootingBoard.addEventListener("click", playerShoot);
 
-function generateIndex() {
-    const index = Math.floor(Math.random() * 100);
+const coordsToHit = [];
 
-    return index;
+function generateIndex() {
+    if (coordsToHit.length !== 0) {
+        const coord = coordsToHit.shift();
+        const index = Number(coord.join(""));
+
+        return index;
+    } else {
+        const index = Math.floor(Math.random() * 100);
+
+        return index;
+    }
 }
 
 function computerShoot() {
@@ -128,6 +137,28 @@ function computerShoot() {
 
         if (primaryBoardSquares[index].className === "ship") {
             primaryBoardSquares[index].dataset.state = "hitShip";
+
+            const coordNum = [targetCoord[0] - 1, changeLetterToNum(targetCoord[1])];
+
+            if (coordNum[0] - 1 >= 0) {
+                const topCoord = [coordNum[0] - 1, coordNum[1]];
+                coordsToHit.push(topCoord);
+            }
+
+            if (coordNum[0] + 1 < 10) {
+                const bottomCoord = [coordNum[0] + 1, coordNum[1]];
+                coordsToHit.push(bottomCoord);
+            }
+
+            if (coordNum[1] - 1 >= 0) {
+                const leftCoord = [coordNum[0], coordNum[1] - 1];
+                coordsToHit.push(leftCoord);
+            }
+
+            if (coordNum[1] + 1 < 10) {
+                const rightCoord = [coordNum[0], coordNum[1] + 1];
+                coordsToHit.push(rightCoord);
+            }
         } else {
             primaryBoardSquares[index].dataset.state = "hit";
         }
