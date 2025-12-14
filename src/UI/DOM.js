@@ -105,6 +105,8 @@ function playerShoot(event) {
 shootingBoard.addEventListener("click", playerShoot);
 
 const coordsToHit = [];
+const coordWithShip = [];
+let currentOrientation;
 
 function generateIndex() {
     if (coordsToHit.length !== 0) {
@@ -116,6 +118,31 @@ function generateIndex() {
         const index = Math.floor(Math.random() * 100);
 
         return index;
+    }
+}
+
+
+function addVerticalCoords(coordNum) {
+    if (coordNum[0] - 1 >= 0) {
+        const topCoord = [coordNum[0] - 1, coordNum[1]];
+        coordsToHit.push(topCoord);
+    }
+
+    if (coordNum[0] + 1 < 10) {
+        const bottomCoord = [coordNum[0] + 1, coordNum[1]];
+        coordsToHit.push(bottomCoord);
+    }
+}
+
+function addHorizontalCoords(coordNum) {
+    if (coordNum[1] - 1 >= 0) {
+        const leftCoord = [coordNum[0], coordNum[1] - 1];
+        coordsToHit.push(leftCoord);
+    }
+
+    if (coordNum[1] + 1 < 10) {
+        const rightCoord = [coordNum[0], coordNum[1] + 1];
+        coordsToHit.push(rightCoord);
     }
 }
 
@@ -139,28 +166,40 @@ function computerShoot() {
             primaryBoardSquares[index].dataset.state = "hitShip";
 
             const coordNum = [targetCoord[0] - 1, changeLetterToNum(targetCoord[1])];
+            const previousHitCoord = coordWithShip.pop();
 
-            if (coordNum[0] - 1 >= 0) {
-                const topCoord = [coordNum[0] - 1, coordNum[1]];
-                coordsToHit.push(topCoord);
+            if (previousHitCoord) {
+                if (previousHitCoord[0] - coordNum[0] === -1) {
+                    currentOrientation = "vertical"
+                }
+
+                if (previousHitCoord[0] - coordNum[0] === 1) {
+                    currentOrientation = "vertical";
+                }
+
+                if (previousHitCoord[1] - coordNum[1] === -1) {
+                    currentOrientation = "horizontal";
+                }
+
+                if (previousHitCoord[1] - coordNum[1] === 1) {
+                    currentOrientation = "horizontal";
+                }
             }
 
-            if (coordNum[0] + 1 < 10) {
-                const bottomCoord = [coordNum[0] + 1, coordNum[1]];
-                coordsToHit.push(bottomCoord);
+            if (currentOrientation === "vertical") {
+                addVerticalCoords(coordNum);
+            } else if (currentOrientation === "horizontal") {
+                addHorizontalCoords(coordNum);
+            } else {
+                addVerticalCoords(coordNum);
+                addHorizontalCoords(coordNum);
             }
 
-            if (coordNum[1] - 1 >= 0) {
-                const leftCoord = [coordNum[0], coordNum[1] - 1];
-                coordsToHit.push(leftCoord);
-            }
-
-            if (coordNum[1] + 1 < 10) {
-                const rightCoord = [coordNum[0], coordNum[1] + 1];
-                coordsToHit.push(rightCoord);
-            }
+            coordWithShip.push(coordNum);
         } else {
             primaryBoardSquares[index].dataset.state = "hit";
+
+            currentOrientation = "";
         }
 
         endTurn();
