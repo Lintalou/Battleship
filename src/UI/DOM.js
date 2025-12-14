@@ -73,7 +73,7 @@ function endTurn() {
 function playerShoot(event) {
     const target = event.target;
 
-    if (!target.hasChildNodes() && target.dataset.state !== "hit") {
+    if (!target.hasChildNodes() && !target.dataset.state) {
         const currentPlayer = getCurrentPlayer();
 
         if (currentTurn === currentPlayer.name) {
