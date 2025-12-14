@@ -121,7 +121,6 @@ function generateIndex() {
     }
 }
 
-
 function addVerticalCoords(coordNum) {
     if (coordNum[0] - 1 >= 0) {
         const topCoord = [coordNum[0] - 1, coordNum[1]];
@@ -155,6 +154,10 @@ function computerShoot() {
         const targetCoord = translateCoord(index);
         const primaryBoardSquares = document.querySelectorAll("#primaryBoard div");
 
+        if (coordsToHit.length === 0) {
+            currentOrientation = "";
+        }
+
         if (primaryBoardSquares[index].dataset.state) {
             computerShoot();
             return;
@@ -170,7 +173,7 @@ function computerShoot() {
 
             if (previousHitCoord) {
                 if (previousHitCoord[0] - coordNum[0] === -1) {
-                    currentOrientation = "vertical"
+                    currentOrientation = "vertical";
                 }
 
                 if (previousHitCoord[0] - coordNum[0] === 1) {
@@ -198,8 +201,6 @@ function computerShoot() {
             coordWithShip.push(coordNum);
         } else {
             primaryBoardSquares[index].dataset.state = "hit";
-
-            currentOrientation = "";
         }
 
         endTurn();
