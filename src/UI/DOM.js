@@ -152,6 +152,7 @@ function computerShoot() {
         const currentPlayer = getCurrentPlayer();
         const index = generateIndex();
         const targetCoord = translateCoord(index);
+        const coordNum = [targetCoord[0] - 1, changeLetterToNum(targetCoord[1])];
         const primaryBoardSquares = document.querySelectorAll("#primaryBoard div");
 
         if (coordsToHit.length === 0) {
@@ -165,10 +166,9 @@ function computerShoot() {
 
         currentPlayer.gameBoard.receiveAttack(targetCoord);
 
-        if (primaryBoardSquares[index].className === "ship") {
+        if (currentPlayer.gameBoard.board[coordNum[0]][coordNum[1]]) {
             primaryBoardSquares[index].dataset.state = "hitShip";
 
-            const coordNum = [targetCoord[0] - 1, changeLetterToNum(targetCoord[1])];
             const previousHitCoord = coordWithShip.pop();
 
             if (previousHitCoord) {
