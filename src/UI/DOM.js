@@ -194,8 +194,17 @@ function computerShoot() {
             } else if (currentOrientation === "horizontal") {
                 addHorizontalCoords(coordNum);
             } else {
-                addVerticalCoords(coordNum);
-                addHorizontalCoords(coordNum);
+                const randomNumber = Math.floor(Math.random() * 2);
+
+                if (randomNumber === 0) {
+                    addVerticalCoords(coordNum);
+                    addHorizontalCoords(coordNum);
+                }
+
+                if (randomNumber === 1) {
+                    addHorizontalCoords(coordNum);
+                    addVerticalCoords(coordNum);
+                }
             }
 
             coordWithShip.push(coordNum);
