@@ -172,20 +172,16 @@ function computerShoot() {
             const previousHitCoord = coordWithShip.pop();
 
             if (previousHitCoord) {
-                if (previousHitCoord[0] - coordNum[0] === -1) {
-                    currentOrientation = "vertical";
+                if (previousHitCoord[0] === coordNum[0]) {
+                    if (Math.abs(previousHitCoord[1] - coordNum[1]) === 1) {
+                        currentOrientation = "horizontal";
+                    }
                 }
 
-                if (previousHitCoord[0] - coordNum[0] === 1) {
-                    currentOrientation = "vertical";
-                }
-
-                if (previousHitCoord[1] - coordNum[1] === -1) {
-                    currentOrientation = "horizontal";
-                }
-
-                if (previousHitCoord[1] - coordNum[1] === 1) {
-                    currentOrientation = "horizontal";
+                if (previousHitCoord[1] === coordNum[1]) {
+                    if (Math.abs(previousHitCoord[0] - coordNum[0]) === 1) {
+                        currentOrientation = "vertical";
+                    }
                 }
             }
 
