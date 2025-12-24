@@ -7,6 +7,7 @@ const startButton = document.getElementById("start");
 const primaryBoard = document.getElementById("primaryBoard");
 const shootingBoard = document.getElementById("shootingBoard");
 const shipCountSelect = document.getElementById("ship-count");
+const selectContainer = document.getElementById("selectContainer");
 
 function displayPrimaryBoard() {
     const currentPlayer = getCurrentPlayer();
@@ -55,6 +56,8 @@ function start() {
         currentPlayer.gameBoard.populate(Number(shipCount));
         computer.gameBoard.populate(Number(shipCount));
     }
+
+    selectContainer.remove();
 
     displayPrimaryBoard();
     displayShootingBoard();
