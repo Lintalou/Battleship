@@ -62,8 +62,8 @@ class GameBoard {
         }
     }
 
-    populate() {
-        while (this.ships.length !== 6) {
+    populate(shipCount) {
+        while (this.ships.length !== shipCount) {
             const randomIndex = Math.floor(Math.random() * 100);
             const coord = translateCoord(randomIndex);
             const coordNum = [coord[0] - 1, changeLetterToNum(coord[1])];

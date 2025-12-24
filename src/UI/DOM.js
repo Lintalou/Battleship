@@ -6,6 +6,7 @@ import {
 const startButton = document.getElementById("start");
 const primaryBoard = document.getElementById("primaryBoard");
 const shootingBoard = document.getElementById("shootingBoard");
+const shipCountSelect = document.getElementById("ship-count");
 
 function displayPrimaryBoard() {
     const currentPlayer = getCurrentPlayer();
@@ -42,8 +43,18 @@ function start() {
 
     setCurrentTurn(currentPlayer);
 
-    currentPlayer.gameBoard.populate();
-    computer.gameBoard.populate();
+    const shipCount = shipCountSelect.value;
+
+    if (shipCount === "random") {
+        const randomNumber1 = Math.floor(Math.random() * 7) + 4;
+        const randomNumber2 = Math.floor(Math.random() * 7) + 4;
+
+        currentPlayer.gameBoard.populate(randomNumber1);
+        computer.gameBoard.populate(randomNumber2);
+    } else {
+        currentPlayer.gameBoard.populate(Number(shipCount));
+        computer.gameBoard.populate(Number(shipCount));
+    }
 
     displayPrimaryBoard();
     displayShootingBoard();
