@@ -8,6 +8,7 @@ const primaryBoard = document.getElementById("primaryBoard");
 const shootingBoard = document.getElementById("shootingBoard");
 const shipCountSelect = document.getElementById("ship-count");
 const selectContainer = document.getElementById("selectContainer");
+const boardContainer = document.getElementById("boardContainer");
 
 function displayPrimaryBoard() {
     const currentPlayer = getCurrentPlayer();
@@ -65,6 +66,20 @@ function start() {
 
 startButton.addEventListener("click", start);
 
+function displayResult(playerName) {
+    const resultText = document.createElement("div");
+
+    resultText.id = "result-text";
+
+    if (playerName === "player") {
+        resultText.textContent = "Congrats, You Win.";
+    } else {
+        resultText.textContent = "You lost...";
+    }
+
+    boardContainer.appendChild(resultText);
+}
+
 function endTurn() {
     const currentPlayer = getCurrentPlayer();
     const computer = getComputerPlayer();
@@ -73,14 +88,12 @@ function endTurn() {
         shootingBoard.removeEventListener("click", playerShoot);
         primaryBoard.removeEventListener("click", computerShoot);
 
-        alert("Computer won");
-    }
-
-    if (computer.gameBoard.allSunk() === true) {
+        displayResult(computer.name);
+    } else if (computer.gameBoard.allSunk() === true) {
         shootingBoard.removeEventListener("click", playerShoot);
         primaryBoard.removeEventListener("click", computerShoot);
 
-        alert("Player won");
+        displayResult(currentPlayer.name);
     }
 }
 
