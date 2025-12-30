@@ -66,3 +66,21 @@ body {
 #boardContainer #primaryBoard div[data-state="hitShip"] {
     background-color: #048e8e;
 }
+
+#selectContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    gap: 10px;
+}
+
+#selectContainer label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#selectContainer select {
+    padding: 3px;
+    font-size: 20px;
+}
