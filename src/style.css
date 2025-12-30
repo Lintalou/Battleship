@@ -35,22 +35,24 @@ body {
 
 #primaryBoard div,
 #shootingBoard div {
-    background-color: white;
-    border: 1px solid black;
+    background-color: #53719c;
+    border: none;
 }
 
 #primaryBoard,
 #shootingBoard {
     display: grid;
-    grid-template-columns: repeat(10, 40px);
-    grid-template-rows: repeat(10, 40px);
+    grid-template-columns: repeat(10, 45px);
+    grid-template-rows: repeat(10, 45px);
+    border: 10px solid #cece90;
 }
 
 #boardContainer {
     display: flex;
     gap: 300px;
     justify-content: center;
-    margin-top: 50px;
+    align-items: center;
+    height: 100vh;
 }
 
 #boardContainer #primaryBoard .ship {
@@ -83,4 +85,8 @@ body {
 #selectContainer select {
     padding: 3px;
     font-size: 20px;
+}
+
+.hidden {
+    display: none;
 }

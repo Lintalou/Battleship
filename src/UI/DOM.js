@@ -10,6 +10,7 @@ const shipCountSelect = document.getElementById("ship-count");
 const selectContainer = document.getElementById("selectContainer");
 const boardContainer = document.getElementById("boardContainer");
 const buttonContainer = document.getElementById("buttonContainer");
+const wrapper = document.getElementById("wrapper");
 
 function displayPrimaryBoard() {
     const currentPlayer = getCurrentPlayer();
@@ -64,6 +65,7 @@ function start() {
 
     displayPrimaryBoard();
     displayShootingBoard();
+    wrapper.classList.remove("hidden");
 }
 
 startButton.addEventListener("click", start);
