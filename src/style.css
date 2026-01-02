@@ -37,6 +37,11 @@ body {
 #shootingBoard div {
     background-color: #53719c;
     border: none;
+    border: 1px dashed #2c3d56;
+}
+
+#shootingBoard div:hover {
+    border: 1px solid white;
 }
 
 #primaryBoard,
@@ -44,7 +49,7 @@ body {
     display: grid;
     grid-template-columns: repeat(10, 45px);
     grid-template-rows: repeat(10, 45px);
-    border: 10px solid #cece90;
+    box-shadow: 0 0 10px 5px #898989;
 }
 
 #boardContainer {
@@ -56,17 +61,17 @@ body {
 }
 
 #boardContainer #primaryBoard .ship {
-    background-color: silver;
+    background-color: white;
 }
 
 #shootingBoard div[data-state="hit"],
 #boardContainer #primaryBoard div[data-state="hit"] {
-    background-color: #ec8181;
+    background-color: #c46d6d;
 }
 
 #shootingBoard div[data-state="hitShip"],
 #boardContainer #primaryBoard div[data-state="hitShip"] {
-    background-color: #048e8e;
+    background-color: #b0b0b0;
 }
 
 #selectContainer {
