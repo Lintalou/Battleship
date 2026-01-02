@@ -39,6 +39,26 @@ function displayShootingBoard() {
     }
 }
 
+function focusCurrentBoard() {
+    const currentPlayer = getCurrentPlayer();
+    const computer = getComputerPlayer();
+
+    if (currentTurn === currentPlayer.name) {
+        primaryBoard.classList.add("unfocus");
+        shootingBoard.classList.remove("unfocus");
+    }
+
+    if (currentTurn === computer.name) {
+        shootingBoard.classList.add("unfocus");
+        primaryBoard.classList.remove("unfocus");
+    }
+}
+
+function focusAllBoard() {
+    primaryBoard.classList.remove("unfocus");
+    shootingBoard.classList.remove("unfocus");
+}
+
 function start() {
     generatePlayers();
 
@@ -65,6 +85,7 @@ function start() {
 
     displayPrimaryBoard();
     displayShootingBoard();
+    focusCurrentBoard();
     wrapper.classList.remove("hidden");
 }
 
@@ -93,11 +114,13 @@ function endTurn() {
         primaryBoard.removeEventListener("click", computerShoot);
 
         displayResult(computer.name);
+        setTimeout(focusAllBoard, 400);
     } else if (computer.gameBoard.allSunk() === true) {
         shootingBoard.removeEventListener("click", playerShoot);
         primaryBoard.removeEventListener("click", computerShoot);
 
         displayResult(currentPlayer.name);
+        setTimeout(focusAllBoard, 400);
     }
 }
 
@@ -127,6 +150,8 @@ function playerShoot(event) {
             endTurn();
 
             setCurrentTurn(computer);
+
+            setTimeout(focusCurrentBoard, 300);
 
             computerAction();
         }
@@ -242,6 +267,8 @@ function computerShoot() {
         endTurn();
 
         setCurrentTurn(currentPlayer);
+
+        setTimeout(focusCurrentBoard, 300);
     }
 }
 
