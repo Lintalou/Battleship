@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battleship</title>
+    <script src="UI/DOM.js" type="module" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="buttonContainer">
+        <button id="start">Start</button>
+    </div>
+    <div id="selectContainer">
+        <label for="ship-count">Choose the number of ships for both players:</label>
+        <select id="ship-count">
+            <option value="4">4 Ships</option>
+            <option value="6" selected>6 Ships</option>
+            <option value="8">8 Ships</option>
+            <option value="10">10 Ships</option>
+            <option value="random">Random # of ships</option>
+        </select>
+    </div>
+    <div id="wrapper" class="hidden">
+        <div id="boardContainer">
+            <div id="primaryBoard"></div>
+            <div id="shootingBoard"></div>
+        </div>
+    </div>
+</body>
+
+</html>
