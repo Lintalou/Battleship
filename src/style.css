@@ -52,10 +52,6 @@ body {
     box-shadow: 0 0 10px 5px #898989;
 }
 
-#primaryBoard:hover {
-    filter: opacity(100%);
-}
-
 #boardContainer {
     display: flex;
     gap: 300px;
@@ -102,4 +98,11 @@ body {
 
 .focus {
     outline: 5px solid white;
+}
+
+#result-text {
+    color: #010f18;
+    font-weight: bold;
+    font-size: 25px;
+    position: absolute;
 }
