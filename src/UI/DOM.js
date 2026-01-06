@@ -44,19 +44,19 @@ function focusCurrentBoard() {
     const computer = getComputerPlayer();
 
     if (currentTurn === currentPlayer.name) {
-        primaryBoard.classList.add("unfocus");
-        shootingBoard.classList.remove("unfocus");
+        shootingBoard.classList.add("focus");
+        primaryBoard.classList.remove("focus");
     }
 
     if (currentTurn === computer.name) {
-        shootingBoard.classList.add("unfocus");
-        primaryBoard.classList.remove("unfocus");
+        primaryBoard.classList.add("focus");
+        shootingBoard.classList.remove("focus");
     }
 }
 
-function focusAllBoard() {
-    primaryBoard.classList.remove("unfocus");
-    shootingBoard.classList.remove("unfocus");
+function unFocusAllBoard() {
+    primaryBoard.classList.remove("focus");
+    shootingBoard.classList.remove("focus");
 }
 
 function start() {
@@ -114,13 +114,13 @@ function endTurn() {
         primaryBoard.removeEventListener("click", computerShoot);
 
         displayResult(computer.name);
-        setTimeout(focusAllBoard, 400);
+        setTimeout(unFocusAllBoard, 400);
     } else if (computer.gameBoard.allSunk() === true) {
         shootingBoard.removeEventListener("click", playerShoot);
         primaryBoard.removeEventListener("click", computerShoot);
 
         displayResult(currentPlayer.name);
-        setTimeout(focusAllBoard, 400);
+        setTimeout(unFocusAllBoard, 400);
     }
 }
 
